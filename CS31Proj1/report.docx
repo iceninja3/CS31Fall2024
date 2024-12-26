@@ -1,0 +1,26 @@
+
+
+For the input for instruction 5 (original.cpp):
+I input the following:
+ - numberSurveyed: 9
+ - forTrarris: 5
+ - forHump: 5
+
+The results were that Hump would win and that 55.6% of voters would vote for each candidate. This output is nonsensical for two reasons. One, if the number surveyed is 9 the two other numbers (how many voters for each candidate) should add up to 9 as well. However, we have managed to "add" a voter. Two, the number of voters is tied so the election should be a draw, but instead the program says that Hump will win.
+
+
+
+Error Introduced in logic_error.cpp:
+
+I changed the sign ">" to "<" in the logic_error.cpp file. This announces the loser of the election as the winner.
+
+
+
+
+Two errors introduced in compile_error.cpp:
+1. I removed the semicolon in the declaration of the numberSurveyed variable.
+2. I also commented out the forHump variable, which caused compilation errors because later in the program the forHump variable was called but because it had not previously been declared the program threw an error.
+
+In the clang compiler one error shown was that a semicolon was expected. Another error clang showed (that essentially repeated itself 4 times) was that the forHump variable was unidentified (which makes sense because I made it so that the forHump variable was never declared).
+
+In the gcc compiler the error messages were slightly different. The equivalent of the semicolon error instead said that an initializer was expected before a certain line. As expected, the forHump variable was not declared in scope (because we deleted it). Somewhat unexpectedly (I didn't expect it), the forTrarris variable also didn't end up getting declared in scope. This is presumably because of the missing semicolon from before confusing the program.
